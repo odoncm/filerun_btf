@@ -1,14 +1,14 @@
 version: '3.8'
 services:
   filerun:
-    image: unraides/filerun
+    image: odoncm/filerun
     container_name: filerun
     network_mode: bridge
     privileged: false
     restart: always
     environment:
-      FR_DB_HOST: filerun_db
-      FR_DB_PORT: 3310
+      FR_DB_HOST: 
+      FR_DB_PORT: 
       FR_DB_NAME: filerun
       FR_DB_USER: filerun
       FR_DB_PASS: filerun
@@ -40,5 +40,5 @@ services:
       - /volume1/docker/filerun_db/data/:/var/lib/mysql  # Mapea el directorio de datos
       - /volume1/docker/filerun_db/config/:/etc/mysql/conf.d  # Mapea el directorio de config
     ports:
-      - "3310:3306"  # Mapea el puerto 8686 del host al puerto 80 del contenedor
+      - "3306:3306"  # Mapea el puerto del host al puerto 3306 del contenedor
     
