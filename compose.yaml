@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  filerun:
+    image: unraides/filerun
+    container_name: filerun
+    network_mode: bridge
+    privileged: false
+    restart: always
+    environment:
+      FR_DB_HOST: filerun_db
+      FR_DB_PORT: 3310
+      FR_DB_NAME: filerun
+      FR_DB_USER: filerun
+      FR_DB_PASS: filerun
+      APACHE_RUN_USER: <nombre_usuario> # Modificar con los datos del NAS
+      APACHE_RUN_USER_ID: <uid_usuario> # Modificar con los datos del NAS
+      APACHE_RUN_GROUP: <nombre_grupo> # Modificar con los datos del NAS
+      APACHE_RUN_GROUP_ID: <gid_grupo> # Modificar con los datos del NAS
+    volumes:
+      - /volume1/filerun-share/:/user-files/  # Mapea el directorio de datos de usuario
+      - /volume1/docker/filerun/:/var/www/html  # Mapea el directorio de datos de la aplicación
+    ports:
+      - "8686:80"  # Mapea el puerto 8686 del host al puerto 80 del contenedor
+    depends_on:
+      - filerun_db
+    links:
+      - filerun_db
+  filerun_db:
+    image: mariadb
+    container_name: filerun_db
+    network_mode: bridge
+    privileged: false
+    restart: always
+    environment:
+          MARIADB_ROOT_PASSWORD: filerun
+          MARIADB_USER: filerun
+          MARIADB_PASSWORD: filerun
+          MARIADB_DATABASE: filerun
+    volumes:
+      - /volume1/docker/filerun_db/data/:/var/lib/mysql  # Mapea el directorio de datos
+      - /volume1/docker/filerun_db/config/:/etc/mysql/conf.d  # Mapea el directorio de config
+    ports:
+      - "3310:3306"  # Mapea el puerto 8686 del host al puerto 80 del contenedor
+    
