@@ -32,8 +32,8 @@ docker exec -i MariaDB-Official sh -c 'exec mysql -uroot -p"YOUR_ROOT_PASSWORD"'
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="Port" Target="3306" Default="" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">3310</Config>
-  <Config Name="Generate Random Password" Target="MARIADB_RANDOM_ROOT_PASSWORD" Default="" Mode="" Description="Set to yes, to generate a random root password. The generated password will be printed to the logs (Docker &amp;gt; MariaDB Icon &amp;gt; Logs)." Type="Variable" Display="always" Required="false" Mask="false">No</Config>
+  <Config Name="Port" Target="3306" Default="" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Generate Random Password" Target="MARIADB_RANDOM_ROOT_PASSWORD" Default="" Mode="" Description="Set to yes, to generate a random root password. The generated password will be printed to the logs (Docker &amp;gt; MariaDB Icon &amp;gt; Logs)." Type="Variable" Display="always" Required="false" Mask="false"></Config>
   <Config Name="Database Name" Target="MARIADB_DATABASE" Default="" Mode="" Description="This variable allows you to specify the name of a database to be created on image startup." Type="Variable" Display="always" Required="true" Mask="false">filerun</Config>
   <Config Name="Database User" Target="MARIADB_USER" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="false">filerun</Config>
   <Config Name="Database Password" Target="MARIADB_PASSWORD" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true">filerun</Config>
